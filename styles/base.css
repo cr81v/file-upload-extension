@@ -1,0 +1,6 @@
+@tailwind base;
+
+
+body, #__plasmo {
+    min-width: 24rem;
+}
