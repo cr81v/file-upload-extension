@@ -10,18 +10,18 @@ import PanelWithHeaderFooter from "~components/panel-with-header-footer"
 function IndexPopup() {
   const [data, setData] = useState("")
   const [file, setFile] = useState<File>()
-  const reader = new FileReader()
+  const reader = useRef(new FileReader())
 
   const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
     const [fileObj] = event.target.files
     if (!fileObj) return
     setFile(fileObj)
-    reader.readAsText(fileObj)
+    reader.current.readAsText(fileObj)
   }
 
   useEffect(() => {
-    reader.onload = () => {
-      setData(reader.result as string)
+    reader.current.onload = () => {
+      setData(reader.current.result as string)
     }
   }, [])
 
